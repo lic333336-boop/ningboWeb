@@ -6,7 +6,6 @@ import com.lchjy.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -25,6 +24,7 @@ public class SceneryController {
 
     @GetMapping("/{id}")
     public Result getById(@PathVariable Integer id) {
+        log.info("查询景点详情: id={}", id);
         return Result.success(sceneryService.getById(id));
     }
 

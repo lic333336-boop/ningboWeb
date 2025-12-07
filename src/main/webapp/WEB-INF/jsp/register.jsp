@@ -38,6 +38,15 @@
         <label>手机号</label>
         <input type="text" id="phone">
     </div>
+    <div class="form-group">
+        <label>邮箱</label>
+        <input type="email" id="email">
+    </div>
+    <div class="form-group">
+        <label>头像</label>
+        <input type="file" id="avatarFile">
+        <input type="hidden" id="avatarUrl">
+    </div>
 
     <button class="btn" onclick="doRegister()">注 册</button>
     <a href="/login" class="link">已有账号？去登录</a>
@@ -45,11 +54,45 @@
 
 <script>
     function doRegister() {
+        var file = $("#avatarFile")[0].files[0];
+        
+        if (file) {
+            // 先上传文件
+            var formData = new FormData();
+            formData.append("file", file);
+
+            $.ajax({
+                url: "/api/common/upload",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(res) {
+                    if (res.code === 1) {
+                        // 上传成功，拿到URL继续注册
+                        submitRegister(res.data);
+                    } else {
+                        alert("头像上传失败: " + res.msg);
+                    }
+                },
+                error: function() {
+                    alert("头像上传网络错误");
+                }
+            });
+        } else {
+            // 没有选头像，直接注册
+            submitRegister("");
+        }
+    }
+
+    function submitRegister(avatarUrl) {
         var data = {
             username: $("#username").val(),
             password: $("#password").val(),
             realName: $("#realName").val(),
-            phone: $("#phone").val()
+            phone: $("#phone").val(),
+            email: $("#email").val(),
+            avatar: avatarUrl
         };
 
         if(!data.username || !data.password) {

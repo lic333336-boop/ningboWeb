@@ -16,4 +16,6 @@ public interface UserMapper {
     int deleteById(Integer id);
 
     List<UserInfo> findAll();
+
+    UserInfo findById(Integer id);
 }

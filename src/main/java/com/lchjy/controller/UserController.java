@@ -6,8 +6,6 @@ import com.lchjy.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -56,6 +54,13 @@ public class UserController {
 
     @GetMapping("/list")
     public Result list() {
+        log.info("查询用户列表");
         return Result.success(userService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public Result getById(@PathVariable Integer id) {
+        log.info("查询用户详情: id={}", id);
+        return Result.success(userService.findById(id));
     }
 }

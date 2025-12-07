@@ -51,4 +51,60 @@ public class PageController {
     public String culture() {
         return "culture"; // 对应 culture.jsp
     }
+
+    // --- 后台管理相关映射 ---
+
+    // 后台首页 (直接跳转到第一个模块：美食管理)
+    @GetMapping("/admin")
+    public String admin() {
+        return "redirect:/admin/food";
+    }
+
+    // 后台-美食管理列表
+    @GetMapping("/admin/food")
+    public String adminFood() {
+        return "admin/food_list";
+    }
+
+    // 后台-美食新增/编辑页
+    @GetMapping("/admin/food/edit")
+    public String adminFoodEdit() {
+        return "admin/food_form";
+    }
+
+    // 后台-景点管理列表
+    @GetMapping("/admin/scenery")
+    public String adminScenery() {
+        return "admin/scenery_list";
+    }
+
+    // 后台-景点新增/编辑页
+    @GetMapping("/admin/scenery/edit")
+    public String adminSceneryEdit() {
+        return "admin/scenery_form";
+    }
+
+    // 后台-文化管理列表
+    @GetMapping("/admin/culture")
+    public String adminCulture() {
+        return "admin/culture_list";
+    }
+
+    // 后台-文化新增/编辑页
+    @GetMapping("/admin/culture/edit")
+    public String adminCultureEdit() {
+        return "admin/culture_form";
+    }
+
+    // 后台-用户管理列表
+    @GetMapping("/admin/user")
+    public String adminUser() {
+        return "admin/user_list";
+    }
+
+    // 后台-用户新增/编辑页
+    @GetMapping("/admin/user/edit")
+    public String adminUserEdit() {
+        return "admin/user_form";
+    }
 }

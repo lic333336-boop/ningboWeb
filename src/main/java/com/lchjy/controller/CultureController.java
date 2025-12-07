@@ -6,7 +6,6 @@ import com.lchjy.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -25,7 +24,7 @@ public class CultureController {
 
     @GetMapping("/{id}")
     public Result getById(@PathVariable Integer id) {
-
+        log.info("查询文化详情: id={}", id);
         return Result.success(cultureService.getById(id));
     }
 

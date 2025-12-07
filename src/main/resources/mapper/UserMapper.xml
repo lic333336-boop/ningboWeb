@@ -32,4 +32,8 @@
         SELECT * FROM user_info
     </select>
 
+    <select id="findById" resultType="com.lchjy.entity.UserInfo">
+        SELECT * FROM user_info WHERE id = #{id}
+    </select>
+
 </mapper>

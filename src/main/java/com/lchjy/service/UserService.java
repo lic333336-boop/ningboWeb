@@ -13,4 +13,7 @@ public interface UserService {
     void delete(Integer id);
 
     List<UserInfo> findAll();
+
+
+    UserInfo findById(Integer id);
 }
