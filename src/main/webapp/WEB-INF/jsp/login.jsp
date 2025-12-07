@@ -8,11 +8,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
       body {
+        margin: 0;
+        padding: 0;
         font-family: "微软雅黑", sans-serif;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
+        flex-direction: column;
+        min-height: 100vh;
         background-color: #f0f2f5;
       }
       .login-box {
@@ -22,6 +23,7 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         width: 350px;
         text-align: center;
+        margin: 40px auto;
       }
       .login-box h2 {
         margin-bottom: 20px;
@@ -63,11 +65,13 @@
         text-decoration: none;
         font-size: 14px;
       }
-      .error-msg {
+        .error-msg {
         color: red;
         margin-bottom: 10px;
         display: none;
       }
+      .footer { width: 100%; background: #001529; color: rgba(255,255,255,0.65); padding: 20px 0; text-align: center; margin-top: auto; }
+      .footer p { margin: 5px 0; font-size: 12px; }
     </style>
   </head>
   <body>
@@ -88,13 +92,19 @@
         <input
           type="password"
           id="password"
-          placeholder="请输入密码 (123456)"
+          placeholder="请输入密码"
         />
       </div>
 
       <button class="btn" onclick="doLogin()">登 录</button>
 
       <a href="/register" class="link">没有账号？立即注册</a>
+    </div>
+
+    <div class="footer">
+        <p>个人版权信息</p>
+        <p>成员一：学号：23H034160125、姓名 李晨豪、邮箱 419289657@qq.com、电话 13857712790</p>
+        <p>成员二：学号：23H034160105 姓名：蒋鈺 邮箱：3517460776@qq.com 电话：15257468755</p>
     </div>
 
     <script>

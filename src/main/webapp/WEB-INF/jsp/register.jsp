@@ -6,8 +6,8 @@
     <title>注册 - 宁波文化旅游网</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        body { font-family: "微软雅黑", sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f2f5; }
-        .reg-box { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 350px; }
+        body { margin: 0; padding: 0; font-family: "微软雅黑", sans-serif; display: flex; flex-direction: column; min-height: 100vh; background-color: #f0f2f5; }
+        .reg-box { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 350px; margin: 40px auto; }
         .reg-box h2 { text-align: center; margin-bottom: 20px; color: #333; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; color: #666; }
@@ -15,6 +15,8 @@
         .btn { width: 100%; padding: 10px; background-color: #52c41a; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin-top: 10px; }
         .btn:hover { background-color: #73d13d; }
         .link { margin-top: 15px; display: block; text-align: center; color: #1890ff; text-decoration: none; font-size: 14px; }
+        .footer { width: 100%; background: #001529; color: rgba(255,255,255,0.65); padding: 20px 0; text-align: center; margin-top: auto; }
+        .footer p { margin: 5px 0; font-size: 12px; }
     </style>
 </head>
 <body>
@@ -50,6 +52,12 @@
 
     <button class="btn" onclick="doRegister()">注 册</button>
     <a href="/login" class="link">已有账号？去登录</a>
+</div>
+
+<div class="footer">
+    <p>个人版权信息</p>
+    <p>成员一：学号：23H034160125、姓名 李晨豪、邮箱 419289657@qq.com、电话 13857712790</p>
+    <p>成员二：学号：23H034160105 姓名：蒋鈺 邮箱：3517460776@qq.com 电话：15257468755</p>
 </div>
 
 <script>

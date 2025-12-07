@@ -6,14 +6,14 @@
     <title>首页 - 宁波文化旅游网</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        body { margin: 0; padding: 0; font-family: "微软雅黑", sans-serif; background-color: #f0f2f5; }
+        body { margin: 0; padding: 0; font-family: "微软雅黑", sans-serif; background-color: #f0f2f5; min-height: 100vh; display: flex; flex-direction: column; }
         .header { background-color: white; color: #333; padding: 0 50px; height: 64px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 8px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 100; }
         .logo { font-size: 22px; font-weight: bold; color: #1890ff; display: flex; align-items: center; }
         .logo img { height: 32px; margin-right: 10px; }
         .user-panel span { margin-right: 15px; font-size: 14px; }
         .btn-logout { cursor: pointer; color: #ff4d4f; }
         
-        .banner { height: 300px; background: url('https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=2076&auto=format&fit=crop') center/cover; display: flex; align-items: center; justify-content: center; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); font-size: 36px; font-weight: bold; margin-bottom: 30px; }
+        .banner { height: 300px; background: url('/image/logo.png') center/cover; display: flex; align-items: center; justify-content: center; color: #1890ff; font-size: 36px; font-weight: bold; margin-bottom: 30px; }
 
         .container { width: 1200px; margin: 0 auto; padding-bottom: 50px; }
         
@@ -43,13 +43,15 @@
         .page-item:hover { color: #1890ff; border-color: #1890ff; }
         .page-item.active { background: #1890ff; color: white; border-color: #1890ff; }
         .page-item.disabled { background: #f5f5f5; color: #ccc; cursor: not-allowed; }
+        
+        .footer { background: #001529; color: rgba(255,255,255,0.65); padding: 40px 0; text-align: center; margin-top: auto; }
+        .footer p { margin: 8px 0; font-size: 14px; }
     </style>
 </head>
 <body>
 
 <div class="header">
     <div class="logo">
-        <img src="https://via.placeholder.com/32x32?text=NB" alt="Logo">
         宁波文化旅游
     </div>
     <div class="user-panel">
@@ -59,7 +61,7 @@
 </div>
 
 <div class="banner">
-    书藏古今，港通天下
+    基于Java的Web开发期末大作业
 </div>
 
 <div class="container">
@@ -78,6 +80,12 @@
         <!-- Cards will be injected here -->
     </div>
     <div id="pagination" class="pagination"></div>
+</div>
+
+<div class="footer">
+    <p>个人版权信息</p>
+    <p>成员一 学号：23H034160125 姓名 李晨豪 邮箱：419289657@qq.com 电话：13857712790</p>
+    <p>成员二 学号：23H034160105 姓名：蒋鈺 邮箱：3517460776@qq.com 电话：15257468755</p>
 </div>
 
 <script>
