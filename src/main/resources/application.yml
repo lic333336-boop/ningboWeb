@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 记得修改数据库密码
+    url: jdbc:mysql://localhost:3306/ningbo?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 838f4fad
+
+  # JSP 视图配置
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+  # 文件上传配置限制
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  # 这里修改为你实际的实体类包路径
+  type-aliases-package: com.lchjy.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 自定义文件上传路径 (macOS路径)
+file:
+  upload-path: /Users/lichenhao/Documents/Project/ningbo/image/
