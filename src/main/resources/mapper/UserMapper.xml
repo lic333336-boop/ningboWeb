@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lchjy.mapper.UserMapper">
+
+    <select id="findByUsername" resultType="UserInfo">
+        SELECT * FROM user_info WHERE username = #{username}
+    </select>
+
+    <insert id="insert" parameterType="UserInfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user_info (username, password, real_name, email, phone, avatar, role)
+        VALUES (#{username}, #{password}, #{realName}, #{email}, #{phone}, #{avatar}, #{role})
+    </insert>
+
+    <update id="update" parameterType="UserInfo">
+        UPDATE user_info
+        <set>
+            <if test="password != null">password = #{password},</if>
+            <if test="realName != null">real_name = #{realName},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="avatar != null">avatar = #{avatar},</if>
+            <if test="role != null">role = #{role},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM user_info WHERE id = #{id}
+    </delete>
+
+    <select id="findAll" resultType="UserInfo">
+        SELECT * FROM user_info
+    </select>
+
+</mapper>

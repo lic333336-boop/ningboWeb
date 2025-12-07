@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lchjy.mapper.FoodMapper">
+
+    <resultMap id="BaseResultMap" type="com.lchjy.entity.NingboFood">
+        <id property="id" column="id" />
+        <result property="foodName" column="food_name" />
+        <result property="description" column="description" />
+        <result property="price" column="price" />
+        <result property="location" column="location" />
+        <result property="foodImage" column="food_image" />
+    </resultMap>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        SELECT * FROM ningbo_food
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND food_name LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT * FROM ningbo_food WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="NingboFood" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO ningbo_food (food_name, description, price, location, food_image)
+        VALUES (#{foodName}, #{description}, #{price}, #{location}, #{foodImage})
+    </insert>
+
+    <update id="update" parameterType="NingboFood">
+        UPDATE ningbo_food
+        <set>
+            <if test="foodName != null">food_name = #{foodName},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="location != null">location = #{location},</if>
+            <if test="foodImage != null">food_image = #{foodImage},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM ningbo_food WHERE id = #{id}
+    </delete>
+
+</mapper>

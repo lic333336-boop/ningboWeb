@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lchjy.mapper.SceneryMapper">
+
+    <resultMap id="BaseResultMap" type="com.lchjy.entity.NingboScenery">
+        <id property="id" column="id" />
+        <result property="sceneryName" column="scenery_name" />
+        <result property="description" column="description" />
+        <result property="address" column="address" />
+        <result property="ticketPrice" column="ticket_price" />
+        <result property="openHours" column="open_hours" />
+        <result property="sceneryImage" column="scenery_image" />
+    </resultMap>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        SELECT * FROM ningbo_scenery
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND scenery_name LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT * FROM ningbo_scenery WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="NingboScenery" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO ningbo_scenery (scenery_name, description, address, ticket_price, open_hours, scenery_image)
+        VALUES (#{sceneryName}, #{description}, #{address}, #{ticketPrice}, #{openHours}, #{sceneryImage})
+    </insert>
+
+    <update id="update" parameterType="NingboScenery">
+        UPDATE ningbo_scenery
+        <set>
+            <if test="sceneryName != null">scenery_name = #{sceneryName},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="ticketPrice != null">ticket_price = #{ticketPrice},</if>
+            <if test="openHours != null">open_hours = #{openHours},</if>
+            <if test="sceneryImage != null">scenery_image = #{sceneryImage},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM ningbo_scenery WHERE id = #{id}
+    </delete>
+
+</mapper>

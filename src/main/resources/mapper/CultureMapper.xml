@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lchjy.mapper.CultureMapper">
+
+    <resultMap id="BaseResultMap" type="com.lchjy.entity.NingboCulture">
+        <id property="id" column="id" />
+        <result property="cultureTitle" column="culture_title" />
+        <result property="content" column="content" />
+        <result property="historyPeriod" column="history_period" />
+        <result property="significance" column="significance" />
+        <result property="cultureImage" column="culture_image" />
+    </resultMap>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        SELECT * FROM ningbo_culture
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND culture_title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT * FROM ningbo_culture WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="NingboCulture" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO ningbo_culture (culture_title, content, history_period, significance, culture_image)
+        VALUES (#{cultureTitle}, #{content}, #{historyPeriod}, #{significance}, #{cultureImage})
+    </insert>
+
+    <update id="update" parameterType="NingboCulture">
+        UPDATE ningbo_culture
+        <set>
+            <if test="cultureTitle != null">culture_title = #{cultureTitle},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="historyPeriod != null">history_period = #{historyPeriod},</if>
+            <if test="significance != null">significance = #{significance},</if>
+            <if test="cultureImage != null">culture_image = #{cultureImage},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM ningbo_culture WHERE id = #{id}
+    </delete>
+
+</mapper>
