@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 @Service
 public class FoodServiceImpl implements FoodService {
 
@@ -14,8 +17,10 @@ public class FoodServiceImpl implements FoodService {
     private FoodMapper foodMapper;
 
     @Override
-    public List<NingboFood> list(String keyword) {
-        return foodMapper.selectList(keyword);
+    public PageInfo<NingboFood> list(String keyword, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<NingboFood> list = foodMapper.selectList(keyword);
+        return new PageInfo<>(list);
     }
 
     @Override

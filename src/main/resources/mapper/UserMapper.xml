@@ -28,8 +28,13 @@
         DELETE FROM user_info WHERE id = #{id}
     </delete>
 
-    <select id="findAll" resultType="UserInfo">
+    <select id="selectList" resultType="UserInfo">
         SELECT * FROM user_info
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND (username LIKE concat('%', #{keyword}, '%') OR real_name LIKE concat('%', #{keyword}, '%'))
+            </if>
+        </where>
     </select>
 
     <select id="findById" resultType="com.lchjy.entity.UserInfo">

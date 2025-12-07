@@ -17,9 +17,11 @@ public class CultureController {
     private CultureService cultureService;
 
     @GetMapping("/list")
-    public Result list(@RequestParam(required = false) String keyword) {
-        log.info("查询文化列表: keyword={}", keyword);
-        return Result.success(cultureService.list(keyword));
+    public Result list(@RequestParam(required = false) String keyword,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int limit) {
+        log.info("查询文化列表: keyword={}, page={}, limit={}", keyword, page, limit);
+        return Result.success(cultureService.list(keyword, page, limit));
     }
 
     @GetMapping("/{id}")

@@ -23,6 +23,10 @@
         .role-badge { padding: 2px 8px; border-radius: 10px; font-size: 12px; }
         .role-admin { background: #fff0f6; color: #eb2f96; border: 1px solid #ffadd2; }
         .role-user { background: #e6f7ff; color: #1890ff; border: 1px solid #91d5ff; }
+        .pagination { margin-top: 20px; display: flex; justify-content: flex-end; }
+        .page-item { padding: 5px 12px; border: 1px solid #d9d9d9; margin-left: 5px; cursor: pointer; border-radius: 4px; }
+        .page-item.active { background: #1890ff; color: white; border-color: #1890ff; }
+        .page-item.disabled { background: #f5f5f5; color: #ccc; cursor: not-allowed; }
     </style>
 </head>
 <body>
@@ -38,6 +42,10 @@
 <div class="main-content">
     <div class="header-bar">
         <h3>用户数据列表</h3>
+        <div class="search-area">
+            <input type="text" id="keyword" class="search-input" placeholder="请输入用户名/真实姓名...">
+            <button class="btn-search" onclick="loadData(1)">搜索</button>
+        </div>
         <div>
             <a href="/index" style="margin-right: 15px; color: #1890ff; text-decoration: none;">返回首页</a>
             <a href="/admin/user/edit" class="btn-add">+ 新增用户</a>
@@ -60,6 +68,7 @@
             <!-- Data will be loaded here -->
         </tbody>
     </table>
+    <div id="pagination" class="pagination"></div>
 </div>
 
 <script>
@@ -75,13 +84,22 @@
         if (user.role !== 'admin') { window.location.href = "/index"; }
     }
 
-    function loadData() {
+    function loadData(page, keyword) {
+        if (!page) page = 1;
+        if (!keyword) keyword = $("#keyword").val();
+        
         $.ajax({
             url: "/api/user/list",
             type: "GET",
+            data: {
+                page: page,
+                limit: 10,
+                keyword: keyword
+            },
             success: function(res) {
                 if (res.code === 1) {
-                    renderTable(res.data);
+                    renderTable(res.data.list);
+                    renderPagination(res.data);
                 } else {
                     alert("加载失败: " + res.msg);
                 }
@@ -112,6 +130,32 @@
             `;
         });
         $("#tableBody").html(html);
+    }
+
+    function renderPagination(pageInfo) {
+        var html = "";
+        
+        // Prev
+        if (pageInfo.hasPreviousPage) {
+            html += `<span class="page-item" onclick="loadData(\${pageInfo.prePage})">上一页</span>`;
+        } else {
+            html += `<span class="page-item disabled">上一页</span>`;
+        }
+        
+        // Pages
+        $.each(pageInfo.navigatepageNums, function(i, num) {
+            var activeClass = (num === pageInfo.pageNum) ? "active" : "";
+            html += `<span class="page-item \${activeClass}" onclick="loadData(\${num})">\${num}</span>`;
+        });
+        
+        // Next
+        if (pageInfo.hasNextPage) {
+            html += `<span class="page-item" onclick="loadData(\${pageInfo.nextPage})">下一页</span>`;
+        } else {
+            html += `<span class="page-item disabled">下一页</span>`;
+        }
+        
+        $("#pagination").html(html);
     }
 
     function deleteItem(id) {

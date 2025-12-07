@@ -1,10 +1,11 @@
 package com.lchjy.service;
 
 import com.lchjy.entity.NingboCulture;
+import com.github.pagehelper.PageInfo;
 import java.util.List;
 
 public interface CultureService {
-    List<NingboCulture> list(String keyword);
+    PageInfo<NingboCulture> list(String keyword, int pageNum, int pageSize);
 
     NingboCulture getById(Integer id);
 

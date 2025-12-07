@@ -41,8 +41,10 @@
         </div>
         
         <div class="form-group">
-            <label>图片链接</label>
-            <input type="text" class="form-control" id="sceneryImage" placeholder="请输入图片URL">
+            <label>景点图片</label>
+            <input type="file" class="form-control" id="fileInput">
+            <input type="hidden" id="sceneryImage">
+            <img id="preview" src="" style="max-width: 200px; margin-top: 10px; display: none;">
         </div>
 
         <div class="form-group">
@@ -105,6 +107,9 @@
                     var data = res.data;
                     $("#sceneryName").val(data.sceneryName);
                     $("#sceneryImage").val(data.sceneryImage);
+                    if(data.sceneryImage){
+                        $("#preview").attr("src", data.sceneryImage).show();
+                    }
                     $("#ticketPrice").val(data.ticketPrice);
                     $("#openHours").val(data.openHours);
                     $("#address").val(data.address);
@@ -117,10 +122,37 @@
     }
 
     function submitForm() {
+        var file = $("#fileInput")[0].files[0];
+        if (file) {
+            var formData = new FormData();
+            formData.append("file", file);
+            $.ajax({
+                url: "/api/common/upload",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(res) {
+                    if (res.code === 1) {
+                        saveData(res.data);
+                    } else {
+                        alert("图片上传失败: " + res.msg);
+                    }
+                },
+                error: function() {
+                    alert("图片上传网络错误");
+                }
+            });
+        } else {
+            saveData($("#sceneryImage").val());
+        }
+    }
+
+    function saveData(imgUrl) {
         var id = $("#sceneryId").val();
         var data = {
             "sceneryName": $("#sceneryName").val(),
-            "sceneryImage": $("#sceneryImage").val(),
+            "sceneryImage": imgUrl,
             "ticketPrice": $("#ticketPrice").val(),
             "openHours": $("#openHours").val(),
             "address": $("#address").val(),

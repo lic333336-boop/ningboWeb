@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 @Service
 public class CultureServiceImpl implements CultureService {
 
@@ -14,8 +17,10 @@ public class CultureServiceImpl implements CultureService {
     private CultureMapper cultureMapper;
 
     @Override
-    public List<NingboCulture> list(String keyword) {
-        return cultureMapper.selectList(keyword);
+    public PageInfo<NingboCulture> list(String keyword, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<NingboCulture> list = cultureMapper.selectList(keyword);
+        return new PageInfo<>(list);
     }
 
     @Override

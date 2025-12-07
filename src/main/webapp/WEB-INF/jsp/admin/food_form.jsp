@@ -41,8 +41,10 @@
         </div>
         
         <div class="form-group">
-            <label>图片链接</label>
-            <input type="text" class="form-control" id="foodImage" placeholder="请输入图片URL">
+            <label>美食图片</label>
+            <input type="file" class="form-control" id="fileInput">
+            <input type="hidden" id="foodImage">
+            <img id="preview" src="" style="max-width: 200px; margin-top: 10px; display: none;">
         </div>
 
         <div class="form-group">
@@ -101,6 +103,9 @@
                     var data = res.data;
                     $("#foodName").val(data.foodName);
                     $("#foodImage").val(data.foodImage);
+                    if(data.foodImage) {
+                        $("#preview").attr("src", data.foodImage).show();
+                    }
                     $("#price").val(data.price);
                     $("#location").val(data.location);
                     $("#description").val(data.description);
@@ -112,10 +117,37 @@
     }
 
     function submitForm() {
+        var file = $("#fileInput")[0].files[0];
+        if (file) {
+            var formData = new FormData();
+            formData.append("file", file);
+            $.ajax({
+                url: "/api/common/upload",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(res) {
+                    if (res.code === 1) {
+                        saveData(res.data);
+                    } else {
+                        alert("图片上传失败: " + res.msg);
+                    }
+                },
+                error: function() {
+                    alert("图片上传网络错误");
+                }
+            });
+        } else {
+            saveData($("#foodImage").val());
+        }
+    }
+
+    function saveData(imgUrl) {
         var id = $("#foodId").val();
         var data = {
             "foodName": $("#foodName").val(),
-            "foodImage": $("#foodImage").val(),
+            "foodImage": imgUrl,
             "price": $("#price").val(),
             "location": $("#location").val(),
             "description": $("#description").val()

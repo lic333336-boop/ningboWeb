@@ -38,6 +38,11 @@
         .card-meta { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 10px; font-size: 12px; color: #999; }
         .price { color: #f5222d; font-size: 16px; font-weight: bold; }
         .btn-detail { background: #e6f7ff; color: #1890ff; padding: 4px 10px; border-radius: 4px; font-size: 12px; }
+        .pagination { margin-top: 40px; display: flex; justify-content: center; }
+        .page-item { padding: 8px 16px; border: 1px solid #d9d9d9; margin: 0 5px; cursor: pointer; border-radius: 4px; background: white; transition: all 0.3s; }
+        .page-item:hover { color: #1890ff; border-color: #1890ff; }
+        .page-item.active { background: #1890ff; color: white; border-color: #1890ff; }
+        .page-item.disabled { background: #f5f5f5; color: #ccc; cursor: not-allowed; }
     </style>
 </head>
 <body>
@@ -72,6 +77,7 @@
     <div id="dataList" class="grid-container">
         <!-- Cards will be injected here -->
     </div>
+    <div id="pagination" class="pagination"></div>
 </div>
 
 <script>
@@ -101,11 +107,11 @@
         if(tabName === 'scenery') $(".nav-item:eq(1)").addClass("active");
         if(tabName === 'culture') $(".nav-item:eq(2)").addClass("active");
         $("#searchInput").val("");
-        loadData();
+        loadData(1);
     }
 
     function doSearch() {
-        loadData();
+        loadData(1);
     }
 
     function logout() {
@@ -115,7 +121,8 @@
         }
     }
 
-    function loadData() {
+    function loadData(page) {
+        if (!page) page = 1;
         var keyword = $("#searchInput").val();
         var apiUrl = "";
         if (currentTab === 'food') apiUrl = "/api/food/list";
@@ -125,10 +132,17 @@
         $("#dataList").html('<p style="grid-column: 1 / -1; text-align:center; color:#999;">加载中...</p>');
 
         $.ajax({
-            url: apiUrl, type: "GET", data: {keyword: keyword},
+            url: apiUrl, 
+            type: "GET", 
+            data: {
+                keyword: keyword,
+                page: page,
+                limit: 8 // Front desk 8 data per page
+            },
             success: function (res) {
                 if (res.code === 1) {
-                    renderGrid(res.data);
+                    renderGrid(res.data.list); // PageInfo contains list
+                    renderPagination(res.data);
                 } else {
                     $("#dataList").html("<p style='grid-column: 1 / -1; color:red; text-align:center;'>加载失败：" + res.msg + "</p>");
                 }
@@ -137,6 +151,32 @@
                 $("#dataList").html("<p style='grid-column: 1 / -1; color:red; text-align:center;'>服务器开小差了</p>");
             }
         });
+    }
+    
+    function renderPagination(pageInfo) {
+        var html = "";
+        
+        // Prev
+        if (pageInfo.hasPreviousPage) {
+            html += `<span class="page-item" onclick="loadData(\${pageInfo.prePage})">上一页</span>`;
+        } else {
+            html += `<span class="page-item disabled">上一页</span>`;
+        }
+        
+        // Pages
+        $.each(pageInfo.navigatepageNums, function(i, num) {
+            var activeClass = (num === pageInfo.pageNum) ? "active" : "";
+            html += `<span class="page-item \${activeClass}" onclick="loadData(\${num})">\${num}</span>`;
+        });
+        
+        // Next
+        if (pageInfo.hasNextPage) {
+            html += `<span class="page-item" onclick="loadData(\${pageInfo.nextPage})">下一页</span>`;
+        } else {
+            html += `<span class="page-item disabled">下一页</span>`;
+        }
+        
+        $("#pagination").html(html);
     }
 
     function renderGrid(list) {

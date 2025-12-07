@@ -53,9 +53,11 @@ public class UserController {
     }
 
     @GetMapping("/list")
-    public Result list() {
-        log.info("查询用户列表");
-        return Result.success(userService.findAll());
+    public Result list(@RequestParam(required = false) String keyword,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int limit) {
+        log.info("查询用户列表: keyword={}, page={}, limit={}", keyword, page, limit);
+        return Result.success(userService.list(keyword, page, limit));
     }
 
     @GetMapping("/{id}")

@@ -1,5 +1,7 @@
 package com.lchjy.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.lchjy.entity.UserInfo;
 import com.lchjy.mapper.UserMapper;
 import com.lchjy.service.UserService;
@@ -55,8 +57,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserInfo> findAll() {
-        return userMapper.findAll();
+    public PageInfo<UserInfo> list(String keyword, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<UserInfo> list = userMapper.selectList(keyword);
+        return new PageInfo<>(list);
     }
 
     @Override

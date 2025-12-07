@@ -17,9 +17,11 @@ public class SceneryController {
     private SceneryService sceneryService;
 
     @GetMapping("/list")
-    public Result list(@RequestParam(required = false) String keyword) {
-        log.info("查询景点列表: keyword={}", keyword);
-        return Result.success(sceneryService.list(keyword));
+    public Result list(@RequestParam(required = false) String keyword,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int limit) {
+        log.info("查询景点列表: keyword={}, page={}, limit={}", keyword, page, limit);
+        return Result.success(sceneryService.list(keyword, page, limit));
     }
 
     @GetMapping("/{id}")

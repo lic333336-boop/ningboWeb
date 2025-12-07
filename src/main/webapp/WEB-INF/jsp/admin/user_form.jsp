@@ -70,8 +70,10 @@
         </div>
         
         <div class="form-group">
-            <label>头像链接</label>
-            <input type="text" class="form-control" id="avatar" placeholder="可选: 头像URL">
+            <label>用户头像</label>
+            <input type="file" class="form-control" id="fileInput">
+            <input type="hidden" id="avatar">
+            <img id="preview" src="" style="max-width: 200px; margin-top: 10px; display: none;">
         </div>
 
         <div style="text-align: right;">
@@ -120,6 +122,9 @@
                     $("#phone").val(data.phone);
                     $("#email").val(data.email);
                     $("#avatar").val(data.avatar);
+                    if(data.avatar) {
+                        $("#preview").attr("src", data.avatar).show();
+                    }
                 } else {
                     alert("加载数据失败");
                 }
@@ -128,6 +133,33 @@
     }
 
     function submitForm() {
+        var file = $("#fileInput")[0].files[0];
+        if (file) {
+            var formData = new FormData();
+            formData.append("file", file);
+            $.ajax({
+                url: "/api/common/upload",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(res) {
+                    if (res.code === 1) {
+                        saveData(res.data);
+                    } else {
+                        alert("头像上传失败: " + res.msg);
+                    }
+                },
+                error: function() {
+                    alert("头像上传网络错误");
+                }
+            });
+        } else {
+            saveData($("#avatar").val());
+        }
+    }
+
+    function saveData(imgUrl) {
         var id = $("#userId").val();
         var data = {
             "username": $("#username").val(),
@@ -135,7 +167,7 @@
             "role": $("#role").val(),
             "phone": $("#phone").val(),
             "email": $("#email").val(),
-            "avatar": $("#avatar").val()
+            "avatar": imgUrl
         };
         
         var pwd = $("#password").val();

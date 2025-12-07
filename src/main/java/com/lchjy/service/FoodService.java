@@ -1,10 +1,11 @@
 package com.lchjy.service;
 
 import com.lchjy.entity.NingboFood;
+import com.github.pagehelper.PageInfo;
 import java.util.List;
 
 public interface FoodService {
-    List<NingboFood> list(String keyword);
+    PageInfo<NingboFood> list(String keyword, int pageNum, int pageSize);
 
     NingboFood getById(Integer id);
 

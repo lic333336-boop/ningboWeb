@@ -41,8 +41,10 @@
         </div>
         
         <div class="form-group">
-            <label>图片链接</label>
-            <input type="text" class="form-control" id="cultureImage" placeholder="请输入图片URL">
+            <label>文化图片</label>
+            <input type="file" class="form-control" id="fileInput">
+            <input type="hidden" id="cultureImage">
+            <img id="preview" src="" style="max-width: 200px; margin-top: 10px; display: none;">
         </div>
 
         <div class="form-group">
@@ -100,6 +102,9 @@
                     var data = res.data;
                     $("#cultureTitle").val(data.cultureTitle);
                     $("#cultureImage").val(data.cultureImage);
+                    if(data.cultureImage) {
+                        $("#preview").attr("src", data.cultureImage).show();
+                    }
                     $("#historyPeriod").val(data.historyPeriod);
                     $("#significance").val(data.significance);
                     $("#content").val(data.content);
@@ -111,10 +116,37 @@
     }
 
     function submitForm() {
+        var file = $("#fileInput")[0].files[0];
+        if (file) {
+            var formData = new FormData();
+            formData.append("file", file);
+            $.ajax({
+                url: "/api/common/upload",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(res) {
+                    if (res.code === 1) {
+                        saveData(res.data);
+                    } else {
+                        alert("图片上传失败: " + res.msg);
+                    }
+                },
+                error: function() {
+                    alert("图片上传网络错误");
+                }
+            });
+        } else {
+            saveData($("#cultureImage").val());
+        }
+    }
+
+    function saveData(imgUrl) {
         var id = $("#cultureId").val();
         var data = {
             "cultureTitle": $("#cultureTitle").val(),
-            "cultureImage": $("#cultureImage").val(),
+            "cultureImage": imgUrl,
             "historyPeriod": $("#historyPeriod").val(),
             "significance": $("#significance").val(),
             "content": $("#content").val()

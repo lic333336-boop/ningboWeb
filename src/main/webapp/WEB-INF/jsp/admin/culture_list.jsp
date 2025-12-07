@@ -20,6 +20,13 @@
         .thumb-img { width: 60px; height: 40px; object-fit: cover; border-radius: 2px; background: #eee; }
         .btn-edit { color: #1890ff; margin-right: 10px; cursor: pointer; }
         .btn-del { color: #ff4d4f; cursor: pointer; }
+        .search-area { display: flex; align-items: center; }
+        .search-input { padding: 8px; border: 1px solid #d9d9d9; border-radius: 4px; border-right: none; border-top-right-radius: 0; border-bottom-right-radius: 0; outline: none; }
+        .btn-search { padding: 8px 15px; background: #1890ff; color: white; border: none; border-radius: 4px; border-top-left-radius: 0; border-bottom-left-radius: 0; cursor: pointer; }
+        .pagination { margin-top: 20px; display: flex; justify-content: flex-end; }
+        .page-item { padding: 5px 12px; border: 1px solid #d9d9d9; margin-left: 5px; cursor: pointer; border-radius: 4px; }
+        .page-item.active { background: #1890ff; color: white; border-color: #1890ff; }
+        .page-item.disabled { background: #f5f5f5; color: #ccc; cursor: not-allowed; }
     </style>
 </head>
 <body>
@@ -35,6 +42,10 @@
 <div class="main-content">
     <div class="header-bar">
         <h3>文化数据列表</h3>
+        <div class="search-area">
+            <input type="text" id="keyword" class="search-input" placeholder="请输入关键词...">
+            <button class="btn-search" onclick="loadData(1)">搜索</button>
+        </div>
         <div>
             <a href="/index" style="margin-right: 15px; color: #1890ff; text-decoration: none;">返回首页</a>
             <a href="/admin/culture/edit" class="btn-add">+ 新增文化</a>
@@ -56,6 +67,7 @@
             <!-- Data will be loaded here -->
         </tbody>
     </table>
+    <div id="pagination" class="pagination"></div>
 </div>
 
 <script>
@@ -71,13 +83,22 @@
         if (user.role !== 'admin') { window.location.href = "/index"; }
     }
 
-    function loadData() {
+    function loadData(page, keyword) {
+        if (!page) page = 1;
+        if (!keyword) keyword = $("#keyword").val();
+
         $.ajax({
             url: "/api/culture/list",
             type: "GET",
+            data: {
+                page: page,
+                limit: 10,
+                keyword: keyword
+            },
             success: function(res) {
                 if (res.code === 1) {
-                    renderTable(res.data);
+                    renderTable(res.data.list);
+                    renderPagination(res.data);
                 } else {
                     alert("加载失败: " + res.msg);
                 }
@@ -103,6 +124,32 @@
             `;
         });
         $("#tableBody").html(html);
+    }
+
+    function renderPagination(pageInfo) {
+        var html = "";
+        
+        // Prev
+        if (pageInfo.hasPreviousPage) {
+            html += `<span class="page-item" onclick="loadData(\${pageInfo.prePage})">上一页</span>`;
+        } else {
+            html += `<span class="page-item disabled">上一页</span>`;
+        }
+        
+        // Pages
+        $.each(pageInfo.navigatepageNums, function(i, num) {
+            var activeClass = (num === pageInfo.pageNum) ? "active" : "";
+            html += `<span class="page-item \${activeClass}" onclick="loadData(\${num})">\${num}</span>`;
+        });
+        
+        // Next
+        if (pageInfo.hasNextPage) {
+            html += `<span class="page-item" onclick="loadData(\${pageInfo.nextPage})">下一页</span>`;
+        } else {
+            html += `<span class="page-item disabled">下一页</span>`;
+        }
+        
+        $("#pagination").html(html);
     }
 
     function deleteItem(id) {
