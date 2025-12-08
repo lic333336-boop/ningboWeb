@@ -1,0 +1,14 @@
+INSERT INTO ningbo.ningbo_food (id, food_name, description, price, location, food_image) VALUES (55, '宁波汤圆', '主要用黑芝麻、猪油做馅，加入少许白糖，外面用糯米粉搓成球，皮薄馅大，香甜可口。', 15.00, '缸鸭狗、城隍庙小吃街', '/images/50a4b7cf-a41f-4676-b0a3-aeaf60356e94.jpg');
+INSERT INTO ningbo.ningbo_food (id, food_name, description, price, location, food_image) VALUES (56, '红膏呛蟹', '选用鲜活的梭子蟹，经盐水腌制而成，蟹肉晶莹剔透，红膏诱人，咸鲜滑嫩，是宁波冷菜之首。', 88.00, '宁海食府、石浦饭店', '/images/9866f574-58be-4919-a469-f29556c94dfc.jpg');
+INSERT INTO ningbo.ningbo_food (id, food_name, description, price, location, food_image) VALUES (57, '冰糖甲鱼', '宁波十大名菜之一，吃来软糯润口、香甜酸咸，风味独特，具有滋阴补虚的功效。', 128.00, '状元楼、老宁波饭店', '/images/621b3c16-e245-4488-9fb5-a6cf4d4dbdd0.jpeg');
+INSERT INTO ningbo.ningbo_food (id, food_name, description, price, location, food_image) VALUES (58, '雪菜大汤黄鱼', '选用新鲜的大黄鱼，配以宁波特产雪里蕻咸菜，汤汁乳白，味道鲜美，肉质嫩滑。', 98.00, '东福园、贴阁碧', '/images/9ed8b659-db9d-4f46-9e7b-79fa540ec163.jpg');
+INSERT INTO ningbo.ningbo_food (id, food_name, description, price, location, food_image) VALUES (59, '奉化芋艿头', '奉化芋艿头个大皮薄，肉质粉糯，无论是红烧还是排骨汤，都是难得的美味。', 25.00, '奉化农家菜馆', '/images/d154e629-9d11-42b1-8e8a-44aa02211154.jpeg');
+INSERT INTO ningbo.ningbo_food (id, food_name, description, price, location, food_image) VALUES (60, '宁式鳝丝', '以黄鳝为原料，去骨切丝，爆炒而成，讲究火候，成菜油润鲜嫩，姜香浓郁。', 68.00, '老宁波饭店', '/images/88d39276-362d-4d65-8fdc-ff6ccdf5b34f.jpg');
+INSERT INTO ningbo.ningbo_food (id, food_name, description, price, location, food_image) VALUES (61, '慈溪杨梅', '慈溪是中国著名的杨梅之乡，这里的杨梅个大汁多，色泽艳丽，酸甜适口。', 30.00, '慈溪各采摘园', '/images/03954548-6f49-4f5b-92ab-0e688f263cee.jpg');
+INSERT INTO ningbo.ningbo_food (id, food_name, description, price, location, food_image) VALUES (62, '腐皮包黄鱼', '用优质豆腐皮包裹黄鱼肉炸制而成，外酥里嫩，吃的时候蘸上醋，解腻又提鲜。', 58.00, '宁波大酒店', '/images/ee1b156d-8c37-4c3c-9ee7-e35db623160a.jpg');
+INSERT INTO ningbo.ningbo_food (id, food_name, description, price, location, food_image) VALUES (63, '宁波年糕', '宁波年糕以优质晚粳米为原料，洁白如玉，口感软糯Q弹，可炒可汤，久煮不烂。', 20.00, '缸鸭狗、慈城年糕馆', '/images/35650ba8-ad17-4b2d-975d-d3102c0c9666.jpg');
+INSERT INTO ningbo.ningbo_food (id, food_name, description, price, location, food_image) VALUES (64, '苔菜拖黄鱼', '将黄鱼肉裹上含有苔菜粉的面糊油炸，色泽金黄隐翠，闻起来有特殊的苔菜香味，入口酥脆。', 45.00, '老外滩周边餐馆', '/images/1b10aa40-5624-4129-a65b-2d97aade3521.jpg');
+INSERT INTO ningbo.ningbo_food (id, food_name, description, price, location, food_image) VALUES (65, 'zyr', '毛肚', 0.50, '厕所', '/images/2f55eb14-8a90-4ae3-8f3e-de8642030ba0.jpg');
+INSERT INTO ningbo.ningbo_food (id, food_name, description, price, location, food_image) VALUES (66, '刘ch', '大逼脸', 0.50, '厕所', '/images/395ae269-d62a-4504-a88f-379596896e75.jpg');
+INSERT INTO ningbo.ningbo_food (id, food_name, description, price, location, food_image) VALUES (67, 'wkf', '大逼脸', 0.50, '厕所', '/images/51ae3e65-5f3f-4f63-95a5-f6f3704c51af.jpg');
+INSERT INTO ningbo.ningbo_food (id, food_name, description, price, location, food_image) VALUES (68, 'zj', '大逼脸', 0.50, '厕所', '/images/51cd6178-f4ff-4be0-ab6e-d7d429f62f85.jpg');

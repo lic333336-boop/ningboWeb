@@ -1,0 +1,2 @@
+INSERT INTO ningbo.user_info (id, username, password, real_name, email, phone, avatar, role, create_time) VALUES (25, 'admin', '123456', '系统管理员', 'admin@ningbo.com', '13800138000', null, 'admin', '2025-12-06 23:07:08');
+INSERT INTO ningbo.user_info (id, username, password, real_name, email, phone, avatar, role, create_time) VALUES (26, 'student', '123456', '李同学', 'student@ningbo.com', '13900139000', null, 'user', '2025-12-06 23:07:08');
