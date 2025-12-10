@@ -215,6 +215,8 @@
     </div>
 
     <script>
+      var currentPage = 1; // Track current page
+      
       $(document).ready(function () {
         checkLogin();
         loadData();
@@ -235,6 +237,8 @@
       function loadData(page, keyword) {
         if (!page) page = 1;
         if (!keyword) keyword = $("#keyword").val();
+        
+        currentPage = page; // Store current page
 
         $.ajax({
           url: "/api/user/list",
@@ -246,6 +250,11 @@
           },
           success: function (res) {
             if (res.code === 1) {
+              // If current page is empty and we're not on page 1, go to previous page
+              if (res.data.list.length === 0 && page > 1) {
+                loadData(page - 1, keyword);
+                return;
+              }
               renderTable(res.data.list);
               renderPagination(res.data);
             } else {
@@ -314,7 +323,7 @@
           success: function (res) {
             if (res.code === 1) {
               alert("删除成功");
-              loadData();
+              loadData(currentPage); // Stay on current page
             } else {
               alert("删除失败: " + res.msg);
             }

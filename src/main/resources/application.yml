@@ -30,4 +30,4 @@ mybatis:
 
 # 自定义文件上传路径 (macOS路径)
 file:
-  upload-path: /Users/lichenhao/Documents/Project/ningbo/image/
+  upload-path: /Users/lichenhao/Documents/Project/ningbo/images/
