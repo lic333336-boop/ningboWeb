@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>景点管理 - 宁波文化旅游网</title>
+    <title>留言管理 - 宁波文化旅游网</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body { margin: 0; padding: 0; font-family: "微软雅黑", sans-serif; display: flex; height: 100vh; overflow: hidden; }
@@ -13,16 +13,15 @@
         .menu-item:hover, .menu-item.active { color: white; background-color: #1890ff; }
         .main-content { flex: 1; background-color: #f0f2f5; padding: 20px; overflow-y: auto; }
         .header-bar { background: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-radius: 4px; margin-bottom: 20px; }
-        .btn-add { background-color: #52c41a; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block;}
-        .data-table { width: 100%; background: white; border-collapse: collapse; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
-        .data-table th, .data-table td { padding: 15px; text-align: left; border-bottom: 1px solid #f0f0f0; }
+        .data-table { width: 100%; background: white; border-collapse: collapse; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.05); table-layout: fixed; }
+        .data-table th, .data-table td { padding: 15px; text-align: left; border-bottom: 1px solid #f0f0f0; word-break: break-all; }
         .data-table th { background-color: #fafafa; font-weight: 500; }
-        .thumb-img { width: 60px; height: 40px; object-fit: cover; border-radius: 2px; background: #eee; }
-        .btn-edit { color: #1890ff; margin-right: 10px; cursor: pointer; }
+        .data-table th:nth-child(1), .data-table td:nth-child(1) { width: 60px; }
+        .data-table th:nth-child(2), .data-table td:nth-child(2) { width: 120px; }
+        .data-table th:nth-child(3), .data-table td:nth-child(3) { width: auto; max-width: 400px; }
+        .data-table th:nth-child(4), .data-table td:nth-child(4) { width: 150px; }
+        .data-table th:nth-child(5), .data-table td:nth-child(5) { width: 80px; }
         .btn-del { color: #ff4d4f; cursor: pointer; }
-        .search-area { display: flex; align-items: center; }
-        .search-input { padding: 8px; border: 1px solid #d9d9d9; border-radius: 4px; border-right: none; border-top-right-radius: 0; border-bottom-right-radius: 0; outline: none; }
-        .btn-search { padding: 8px 15px; background: #1890ff; color: white; border: none; border-radius: 4px; border-top-left-radius: 0; border-bottom-left-radius: 0; cursor: pointer; }
         .pagination { margin-top: 20px; display: flex; justify-content: flex-end; }
         .page-item { padding: 5px 12px; border: 1px solid #d9d9d9; margin-left: 5px; cursor: pointer; border-radius: 4px; }
         .page-item.active { background: #1890ff; color: white; border-color: #1890ff; }
@@ -34,22 +33,17 @@
 <div class="sidebar">
     <div class="logo-area">管理系统</div>
     <a href="/admin/food" class="menu-item">美食管理</a>
-    <a href="/admin/scenery" class="menu-item active">景点管理</a>
+    <a href="/admin/scenery" class="menu-item">景点管理</a>
     <a href="/admin/culture" class="menu-item">文化管理</a>
     <a href="/admin/user" class="menu-item">用户管理</a>
-    <a href="/admin/guestbook" class="menu-item">留言管理</a>
+    <a href="/admin/guestbook" class="menu-item active">留言管理</a>
 </div>
 
 <div class="main-content">
     <div class="header-bar">
-        <h3>景点数据列表</h3>
-        <div class="search-area">
-            <input type="text" id="keyword" class="search-input" placeholder="请输入关键词...">
-            <button class="btn-search" onclick="loadData(1)">搜索</button>
-        </div>
+        <h3>留言数据列表</h3>
         <div>
             <a href="/index" style="margin-right: 15px; color: #1890ff; text-decoration: none;">返回首页</a>
-            <a href="/admin/scenery/edit" class="btn-add">+ 新增景点</a>
         </div>
     </div>
 
@@ -57,10 +51,9 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>图片</th>
-            <th>名称</th>
-            <th>门票</th>
-            <th>开放时间</th>
+            <th>昵称</th>
+            <th>留言内容</th>
+            <th>留言时间</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -86,25 +79,23 @@
         if (user.role !== 'admin') { window.location.href = "/index"; }
     }
 
-    function loadData(page, keyword) {
+    function loadData(page) {
         if (!page) page = 1;
-        if (!keyword) keyword = $("#keyword").val();
         
         currentPage = page; // Store current page
 
         $.ajax({
-            url: "/api/scenery/list",
+            url: "/api/guestbook/list",
             type: "GET",
             data: {
                 page: page,
-                limit: 10,
-                keyword: keyword
+                limit: 10
             },
             success: function(res) {
                 if (res.code === 1) {
                     // If current page is empty and we're not on page 1, go to previous page
                     if (res.data.list.length === 0 && page > 1) {
-                        loadData(page - 1, keyword);
+                        loadData(page - 1);
                         return;
                     }
                     renderTable(res.data.list);
@@ -119,15 +110,14 @@
     function renderTable(list) {
         var html = "";
         $.each(list, function(i, item) {
+            var time = formatDate(item.createTime);
             html += `
                 <tr>
                     <td>\${item.id}</td>
-                    <td><img src="\${item.sceneryImage}" class="thumb-img"></td>
-                    <td>\${item.sceneryName}</td>
-                    <td>\${item.ticketPrice}</td>
-                    <td>\${item.openHours}</td>
+                    <td>\${item.nickname}</td>
+                    <td>\${item.content}</td>
+                    <td>\${time}</td>
                     <td>
-                        <a href="/admin/scenery/edit?id=\${item.id}" class="btn-edit">编辑</a>
                         <span class="btn-del" onclick="deleteItem(\${item.id})">删除</span>
                     </td>
                 </tr>
@@ -135,7 +125,7 @@
         });
         $("#tableBody").html(html);
     }
-
+    
     function renderPagination(pageInfo) {
         var html = "";
         
@@ -163,9 +153,9 @@
     }
 
     function deleteItem(id) {
-        if(!confirm("确定要删除这条数据吗？此操作不可恢复。")) return;
+        if(!confirm("确定要删除这条留言吗？此操作不可恢复。")) return;
         $.ajax({
-            url: "/api/scenery/delete/" + id,
+            url: "/api/guestbook/delete/" + id,
             type: "DELETE",
             success: function(res) {
                  if (res.code === 1) {
@@ -176,6 +166,17 @@
                  }
             }
         });
+    }
+
+    function formatDate(dateStr) {
+        if (!dateStr) return "";
+        var date = new Date(dateStr);
+        var year = date.getFullYear();
+        var month = String(date.getMonth() + 1).padStart(2, '0');
+        var day = String(date.getDate()).padStart(2, '0');
+        var hours = String(date.getHours()).padStart(2, '0');
+        var minutes = String(date.getMinutes()).padStart(2, '0');
+        return `\${year}-\${month}-\${day} \${hours}:\${minutes}`;
     }
 </script>
 

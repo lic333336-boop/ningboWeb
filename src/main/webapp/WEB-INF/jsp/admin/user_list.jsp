@@ -171,6 +171,7 @@
       <a href="/admin/scenery" class="menu-item">景点管理</a>
       <a href="/admin/culture" class="menu-item">文化管理</a>
       <a href="/admin/user" class="menu-item active">用户管理</a>
+      <a href="/admin/guestbook" class="menu-item">留言管理</a>
     </div>
 
     <div class="main-content">

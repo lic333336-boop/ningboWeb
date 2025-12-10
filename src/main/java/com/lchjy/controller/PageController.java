@@ -52,6 +52,12 @@ public class PageController {
         return "culture"; // 对应 culture.jsp
     }
 
+    // 留言板页
+    @GetMapping("/guestbook")
+    public String guestbook() {
+        return "guestbook"; // 对应 guestbook.jsp
+    }
+
     // --- 后台管理相关映射 ---
 
     // 后台首页 (直接跳转到第一个模块：美食管理)
@@ -106,5 +112,11 @@ public class PageController {
     @GetMapping("/admin/user/edit")
     public String adminUserEdit() {
         return "admin/user_form";
+    }
+
+    // 后台-留言管理列表
+    @GetMapping("/admin/guestbook")
+    public String adminGuestbook() {
+        return "admin/guestbook_list";
     }
 }

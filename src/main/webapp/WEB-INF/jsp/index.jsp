@@ -74,6 +74,7 @@
         <div class="nav-item active" onclick="switchTab('food')">家乡美食</div>
         <div class="nav-item" onclick="switchTab('scenery')">家乡景点</div>
         <div class="nav-item" onclick="switchTab('culture')">家乡文化</div>
+        <a href="/guestbook" class="nav-item" style="text-decoration: none; color: #666;">留言板</a>
     </div>
 
     <div id="dataList" class="grid-container">
