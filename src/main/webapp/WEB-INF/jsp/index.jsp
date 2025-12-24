@@ -6,46 +6,262 @@
     <title>首页 - 宁波文化旅游网</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        body { margin: 0; padding: 0; font-family: "微软雅黑", sans-serif; background-color: #f0f2f5; min-height: 100vh; display: flex; flex-direction: column; }
-        .header { background-color: white; color: #333; padding: 0 50px; height: 64px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 8px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 22px; font-weight: bold; color: #1890ff; display: flex; align-items: center; }
-        .logo img { height: 32px; margin-right: 10px; }
-        .user-panel span { margin-right: 15px; font-size: 14px; }
-        .btn-logout { cursor: pointer; color: #ff4d4f; }
-        
-        .banner { height: 300px; background: url('/image/logo.png') center/cover; display: flex; align-items: center; justify-content: center; color: #1890ff; font-size: 36px; font-weight: bold; margin-bottom: 30px; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑", sans-serif;
+            background-color: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-        .container { width: 1200px; margin: 0 auto; padding-bottom: 50px; }
-        
-        .nav-menu { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-        .nav-item { cursor: pointer; font-size: 16px; font-weight: 500; color: #666; padding: 5px 10px; transition: all 0.3s; }
-        .nav-item.active { color: #1890ff; font-weight: bold; border-bottom: 2px solid #1890ff; }
-        .nav-item:hover { color: #1890ff; }
+        .header {
+            background-color: white;
+            color: #333;
+            padding: 0 50px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-        .search-area { text-align: center; margin-bottom: 40px; }
-        .search-area input { width: 400px; padding: 12px 20px; border: 1px solid #ddd; border-radius: 25px 0 0 25px; outline: none; font-size: 16px; transition: border 0.3s; }
-        .search-area input:focus { border-color: #1890ff; }
-        .search-area button { padding: 12px 30px; background-color: #1890ff; color: white; border: none; border-radius: 0 25px 25px 0; cursor: pointer; font-size: 16px; transition: background 0.3s; }
-        .search-area button:hover { background-color: #40a9ff; }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #1890ff;
+            display: flex;
+            align-items: center;
+        }
 
-        .grid-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
-        .card { background: white; border-radius: 8px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; border: 1px solid #eee; display: flex; flex-direction: column; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-        .card-img { width: 100%; height: 180px; object-fit: cover; background-color: #f5f5f5; }
-        .card-body { padding: 15px; flex: 1; display: flex; flex-direction: column; }
-        .card-title { font-size: 18px; font-weight: bold; margin: 0 0 10px 0; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .card-desc { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; flex: 1; }
-        .card-meta { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 10px; font-size: 12px; color: #999; }
-        .price { color: #f5222d; font-size: 16px; font-weight: bold; }
-        .btn-detail { background: #e6f7ff; color: #1890ff; padding: 4px 10px; border-radius: 4px; font-size: 12px; }
-        .pagination { margin-top: 40px; display: flex; justify-content: center; }
-        .page-item { padding: 8px 16px; border: 1px solid #d9d9d9; margin: 0 5px; cursor: pointer; border-radius: 4px; background: white; transition: all 0.3s; }
-        .page-item:hover { color: #1890ff; border-color: #1890ff; }
-        .page-item.active { background: #1890ff; color: white; border-color: #1890ff; }
-        .page-item.disabled { background: #f5f5f5; color: #ccc; cursor: not-allowed; }
-        
-        .footer { background: #001529; color: rgba(255,255,255,0.65); padding: 40px 0; text-align: center; margin-top: auto; }
-        .footer p { margin: 8px 0; font-size: 14px; }
+        .logo img {
+            height: 32px;
+            margin-right: 10px;
+        }
+
+        .user-panel span {
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .btn-logout {
+            cursor: pointer;
+            color: #ff4d4f;
+        }
+
+        .banner {
+            height: 300px;
+            background: url('/image/logo.png') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1890ff;
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-item {
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            color: #666;
+            padding: 5px 10px;
+            transition: all 0.3s;
+        }
+
+        .nav-item.active {
+            color: #1890ff;
+            font-weight: bold;
+            border-bottom: 2px solid #1890ff;
+        }
+
+        .nav-item:hover {
+            color: #1890ff;
+        }
+
+        .search-area {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .search-area input {
+            width: 400px;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 25px 0 0 25px;
+            outline: none;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        .search-area input:focus {
+            border-color: #1890ff;
+        }
+
+        .search-area button {
+            padding: 12px 30px;
+            background-color: #1890ff;
+            color: white;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .search-area button:hover {
+            background-color: #40a9ff;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: #f5f5f5;
+        }
+
+        .card-body {
+            padding: 15px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex: 1;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 10px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .price {
+            color: #f5222d;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .btn-detail {
+            background: #e6f7ff;
+            color: #1890ff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .pagination {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .page-item {
+            padding: 8px 16px;
+            border: 1px solid #d9d9d9;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 4px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .page-item:hover {
+            color: #1890ff;
+            border-color: #1890ff;
+        }
+
+        .page-item.active {
+            background: #1890ff;
+            color: white;
+            border-color: #1890ff;
+        }
+
+        .page-item.disabled {
+            background: #f5f5f5;
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .footer {
+            background: #001529;
+            color: rgba(255, 255, 255, 0.65);
+            padding: 40px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -92,7 +308,7 @@
 <script>
     var currentTab = 'food';
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         var userStr = localStorage.getItem("currentUser");
         if (!userStr) {
             window.location.href = "/login";
@@ -100,9 +316,9 @@
         }
         var user = JSON.parse(userStr);
         $("#welcomeUser").text("你好，" + (user.realName || user.username));
-        
+
         // 如果是管理员，显示返回后台链接
-        if(user.role === 'admin') {
+        if (user.role === 'admin') {
             $(".user-panel").prepend('<a href="/admin" style="margin-right:15px; color:#1890ff; text-decoration:none;">进入后台</a>');
         }
 
@@ -112,9 +328,9 @@
     function switchTab(tabName) {
         currentTab = tabName;
         $(".nav-item").removeClass("active");
-        if(tabName === 'food') $(".nav-item:eq(0)").addClass("active");
-        if(tabName === 'scenery') $(".nav-item:eq(1)").addClass("active");
-        if(tabName === 'culture') $(".nav-item:eq(2)").addClass("active");
+        if (tabName === 'food') $(".nav-item:eq(0)").addClass("active");
+        if (tabName === 'scenery') $(".nav-item:eq(1)").addClass("active");
+        if (tabName === 'culture') $(".nav-item:eq(2)").addClass("active");
         $("#searchInput").val("");
         loadData(1);
     }
@@ -124,7 +340,7 @@
     }
 
     function logout() {
-        if(confirm("确定要退出登录吗？")) {
+        if (confirm("确定要退出登录吗？")) {
             localStorage.removeItem("currentUser");
             window.location.href = "/login";
         }
@@ -141,8 +357,8 @@
         $("#dataList").html('<p style="grid-column: 1 / -1; text-align:center; color:#999;">加载中...</p>');
 
         $.ajax({
-            url: apiUrl, 
-            type: "GET", 
+            url: apiUrl,
+            type: "GET",
             data: {
                 keyword: keyword,
                 page: page,
@@ -161,30 +377,30 @@
             }
         });
     }
-    
+
     function renderPagination(pageInfo) {
         var html = "";
-        
+
         // Prev
         if (pageInfo.hasPreviousPage) {
             html += `<span class="page-item" onclick="loadData(\${pageInfo.prePage})">上一页</span>`;
         } else {
             html += `<span class="page-item disabled">上一页</span>`;
         }
-        
+
         // Pages
-        $.each(pageInfo.navigatepageNums, function(i, num) {
+        $.each(pageInfo.navigatepageNums, function (i, num) {
             var activeClass = (num === pageInfo.pageNum) ? "active" : "";
             html += `<span class="page-item \${activeClass}" onclick="loadData(\${num})">\${num}</span>`;
         });
-        
+
         // Next
         if (pageInfo.hasNextPage) {
             html += `<span class="page-item" onclick="loadData(\${pageInfo.nextPage})">下一页</span>`;
         } else {
             html += `<span class="page-item disabled">下一页</span>`;
         }
-        
+
         $("#pagination").html(html);
     }
 
@@ -194,7 +410,7 @@
             return;
         }
         var html = "";
-        $.each(list, function(i, item) {
+        $.each(list, function (i, item) {
             var title = "", desc = "", img = "", meta = "";
 
             if (currentTab === 'food') {
