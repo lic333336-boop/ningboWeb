@@ -54,17 +54,19 @@
       }
 
       .banner {
-        height: 300px;
+        height: 500px;
         /* background: url('/image/logo.png') center/cover; */
-        background-color: #f0f2f5;
+        background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('/image/background.jpeg') center bottom/cover no-repeat;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #1890ff;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         font-size: 36px;
         font-weight: bold;
         margin-bottom: 30px;
         gap: 20px; /* Space between logo and text */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       }
 
       .banner img {
@@ -99,13 +101,20 @@
       }
 
       .nav-item.active {
-        color: #1890ff;
+        color: white;
+        background-color: #1890ff;
         font-weight: bold;
-        border-bottom: 2px solid #1890ff;
+        box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
+        border-bottom: none;
       }
 
       .nav-item:hover {
         color: #1890ff;
+        transform: translateY(-2px);
+      }
+
+      .nav-item.active:hover {
+        color: white;
       }
 
       .search-area {
@@ -125,21 +134,25 @@
 
       .search-area input:focus {
         border-color: #1890ff;
+        box-shadow: 0 4px 15px rgba(24, 144, 255, 0.1);
       }
 
       .search-area button {
-        padding: 12px 30px;
+        padding: 15px 40px;
         background-color: #1890ff;
         color: white;
         border: none;
-        border-radius: 0 25px 25px 0;
+        border-radius: 0 50px 50px 0;
         cursor: pointer;
         font-size: 16px;
-        transition: background 0.3s;
+        transition: all 0.3s;
+        font-weight: bold;
+        box-shadow: 0 4px 12px rgba(24, 144, 255, 0.2);
       }
 
       .search-area button:hover {
         background-color: #40a9ff;
+        box-shadow: 0 6px 16px rgba(24, 144, 255, 0.3);
       }
 
       .grid-container {
@@ -249,6 +262,7 @@
         background: #1890ff;
         color: white;
         border-color: #1890ff;
+        box-shadow: 0 2px 8px rgba(24, 144, 255, 0.3);
       }
 
       .page-item.disabled {
@@ -273,7 +287,10 @@
   </head>
   <body>
     <div class="header">
-      <div class="logo">宁波文化旅游</div>
+      <div class="logo">
+        <img src="/image/logo1.webp" alt="Logo" style="height: 40px; margin-right: 15px;">
+        <span>基于Java的Web开发期末大作业</span>
+      </div>
       <div class="user-panel">
         <span id="welcomeUser">正在加载...</span>
         <span class="btn-logout" onclick="logout()">退出登录</span>
@@ -281,8 +298,7 @@
     </div>
 
     <div class="banner">
-      <img src="/image/logo1.webp" alt="Logo" />
-      <span>基于Java的Web开发期末大作业</span>
+      <!-- Background image only -->
     </div>
 
     <div class="container">
