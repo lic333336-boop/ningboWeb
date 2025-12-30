@@ -426,3 +426,91 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
 	at java.base/java.lang.Thread.run(Thread.java:1583)
 2025-12-24 13:47:27.109 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource-HikariPool-1 - Shutdown initiated...
 2025-12-24 13:47:27.120 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource-HikariPool-1 - Shutdown completed.
+2025-12-24 14:27:31.315 [main] INFO  com.lchjy.NingboApplication-Starting NingboApplication using Java 21.0.2 with PID 2995 (/Users/lichenhao/Documents/Project/ningbo/target/classes started by lichenhao in /Users/lichenhao/Documents/Project/ningbo)
+2025-12-24 14:27:31.317 [main] INFO  com.lchjy.NingboApplication-No active profile set, falling back to 1 default profile: "default"
+2025-12-24 14:27:32.350 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer-Tomcat initialized with port 8080 (http)
+2025-12-24 14:27:32.364 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-24 14:27:32.366 [main] INFO  org.apache.catalina.core.StandardService-Starting service [Tomcat]
+2025-12-24 14:27:32.367 [main] INFO  org.apache.catalina.core.StandardEngine-Starting Servlet engine: [Apache Tomcat/10.1.24]
+2025-12-24 14:27:32.549 [main] INFO  org.apache.jasper.servlet.TldScanner-At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-12-24 14:27:32.555 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/]-Initializing Spring embedded WebApplicationContext
+2025-12-24 14:27:32.555 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext-Root WebApplicationContext: initialization completed in 1192 ms
+2025-12-24 14:27:32.917 [main] INFO  o.s.b.a.web.servlet.WelcomePageHandlerMapping-Adding welcome page template: index
+2025-12-24 14:27:33.210 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-Starting ProtocolHandler ["http-nio-8080"]
+2025-12-24 14:27:33.231 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer-Tomcat started on port 8080 (http) with context path '/'
+2025-12-24 14:27:33.238 [main] INFO  com.lchjy.NingboApplication-Started NingboApplication in 2.294 seconds (process running for 3.361)
+2025-12-24 14:27:41.185 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/]-Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-24 14:27:41.185 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-Initializing Servlet 'dispatcherServlet'
+2025-12-24 14:27:41.186 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-Completed initialization in 1 ms
+2025-12-24 14:27:41.963 [http-nio-8080-exec-2] WARN  com.lchjy.config.GlobalExceptionHandler-检测到 favicon.ico 请求缺失，已忽略堆栈信息打印。
+2025-12-24 14:27:48.520 [http-nio-8080-exec-3] INFO  com.lchjy.controller.UserController-用户登录请求: userInfo=UserInfo(id=null, username=admin, password=123456, realName=null, email=null, phone=null, avatar=null, role=null, createTime=null)
+2025-12-24 14:27:48.564 [http-nio-8080-exec-3] INFO  com.zaxxer.hikari.HikariDataSource-HikariPool-1 - Starting...
+2025-12-24 14:27:48.955 [http-nio-8080-exec-3] INFO  com.zaxxer.hikari.pool.HikariPool-HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@77309cde
+2025-12-24 14:27:48.957 [http-nio-8080-exec-3] INFO  com.zaxxer.hikari.HikariDataSource-HikariPool-1 - Start completed.
+2025-12-24 14:27:49.142 [http-nio-8080-exec-6] INFO  com.lchjy.controller.FoodController-查询美食列表: keyword=, page=1, limit=10
+2025-12-24 14:27:49.163 [http-nio-8080-exec-7] WARN  com.lchjy.config.GlobalExceptionHandler-检测到 favicon.ico 请求缺失，已忽略堆栈信息打印。
+2025-12-24 14:28:05.691 [http-nio-8080-exec-9] INFO  com.lchjy.controller.SceneryController-查询景点列表: keyword=, page=1, limit=10
+2025-12-24 14:28:05.720 [http-nio-8080-exec-1] WARN  com.lchjy.config.GlobalExceptionHandler-检测到 favicon.ico 请求缺失，已忽略堆栈信息打印。
+2025-12-24 14:28:06.401 [http-nio-8080-exec-4] INFO  com.lchjy.controller.UserController-查询用户列表: keyword=, page=1, limit=10
+2025-12-24 14:28:06.419 [http-nio-8080-exec-5] WARN  com.lchjy.config.GlobalExceptionHandler-检测到 favicon.ico 请求缺失，已忽略堆栈信息打印。
+2025-12-24 14:28:07.805 [http-nio-8080-exec-6] INFO  com.lchjy.controller.CultureController-查询文化列表: keyword=, page=1, limit=10
+2025-12-24 14:28:07.815 [http-nio-8080-exec-8] WARN  com.lchjy.config.GlobalExceptionHandler-检测到 favicon.ico 请求缺失，已忽略堆栈信息打印。
+2025-12-24 14:28:08.406 [http-nio-8080-exec-1] INFO  com.lchjy.controller.SceneryController-查询景点列表: keyword=, page=1, limit=10
+2025-12-24 14:28:08.417 [http-nio-8080-exec-10] WARN  com.lchjy.config.GlobalExceptionHandler-检测到 favicon.ico 请求缺失，已忽略堆栈信息打印。
+2025-12-24 14:28:09.220 [http-nio-8080-exec-3] INFO  com.lchjy.controller.FoodController-查询美食列表: keyword=, page=1, limit=10
+2025-12-24 14:28:09.256 [http-nio-8080-exec-4] WARN  com.lchjy.config.GlobalExceptionHandler-检测到 favicon.ico 请求缺失，已忽略堆栈信息打印。
+2025-12-24 14:28:09.885 [http-nio-8080-exec-7] INFO  com.lchjy.controller.SceneryController-查询景点列表: keyword=, page=1, limit=10
+2025-12-24 14:28:09.906 [http-nio-8080-exec-8] WARN  com.lchjy.config.GlobalExceptionHandler-检测到 favicon.ico 请求缺失，已忽略堆栈信息打印。
+2025-12-24 14:28:10.436 [http-nio-8080-exec-9] INFO  com.lchjy.controller.CultureController-查询文化列表: keyword=, page=1, limit=10
+2025-12-24 14:28:10.462 [http-nio-8080-exec-1] WARN  com.lchjy.config.GlobalExceptionHandler-检测到 favicon.ico 请求缺失，已忽略堆栈信息打印。
+2025-12-24 14:28:15.100 [http-nio-8080-exec-2] INFO  com.lchjy.controller.FoodController-查询美食列表: keyword=, page=1, limit=8
+2025-12-24 14:28:15.122 [http-nio-8080-exec-3] WARN  com.lchjy.config.GlobalExceptionHandler-检测到 favicon.ico 请求缺失，已忽略堆栈信息打印。
+2025-12-24 15:59:26.934 [main] INFO  com.lchjy.NingboApplication-Starting NingboApplication using Java 21.0.2 with PID 3902 (/Users/lichenhao/Documents/Project/ningbo/target/classes started by lichenhao in /Users/lichenhao/Documents/Project/ningbo)
+2025-12-24 15:59:26.936 [main] INFO  com.lchjy.NingboApplication-No active profile set, falling back to 1 default profile: "default"
+2025-12-24 15:59:28.052 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer-Tomcat initialized with port 8080 (http)
+2025-12-24 15:59:28.064 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-24 15:59:28.065 [main] INFO  org.apache.catalina.core.StandardService-Starting service [Tomcat]
+2025-12-24 15:59:28.066 [main] INFO  org.apache.catalina.core.StandardEngine-Starting Servlet engine: [Apache Tomcat/10.1.24]
+2025-12-24 15:59:28.267 [main] INFO  org.apache.jasper.servlet.TldScanner-At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-12-24 15:59:28.277 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/]-Initializing Spring embedded WebApplicationContext
+2025-12-24 15:59:28.278 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext-Root WebApplicationContext: initialization completed in 1303 ms
+2025-12-24 15:59:28.952 [main] INFO  o.s.b.a.web.servlet.WelcomePageHandlerMapping-Adding welcome page template: index
+2025-12-24 15:59:29.253 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-Starting ProtocolHandler ["http-nio-8080"]
+2025-12-24 15:59:29.276 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer-Tomcat started on port 8080 (http) with context path '/'
+2025-12-24 15:59:29.284 [main] INFO  com.lchjy.NingboApplication-Started NingboApplication in 2.745 seconds (process running for 4.133)
+2025-12-24 15:59:38.921 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/]-Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-24 15:59:38.921 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-Initializing Servlet 'dispatcherServlet'
+2025-12-24 15:59:38.923 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-Completed initialization in 2 ms
+2025-12-24 15:59:40.214 [http-nio-8080-exec-2] INFO  com.lchjy.controller.FoodController-查询美食列表: keyword=, page=1, limit=8
+2025-12-24 15:59:40.347 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource-HikariPool-1 - Starting...
+2025-12-24 15:59:40.779 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool-HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@a9b25aa
+2025-12-24 15:59:40.781 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource-HikariPool-1 - Start completed.
+2025-12-24 16:00:13.797 [http-nio-8080-exec-4] INFO  com.lchjy.controller.UserController-用户登录请求: userInfo=UserInfo(id=null, username=admin, password=123456, realName=null, email=null, phone=null, avatar=null, role=null, createTime=null)
+2025-12-24 16:00:13.953 [http-nio-8080-exec-7] INFO  com.lchjy.controller.FoodController-查询美食列表: keyword=, page=1, limit=10
+2025-12-24 16:00:18.947 [http-nio-8080-exec-9] INFO  com.lchjy.controller.FoodController-查询美食列表: keyword=, page=1, limit=8
+2025-12-24 17:01:54.568 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool-HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h13s683ms).
+2025-12-24 18:02:22.948 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool-HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=59m58s236ms).
+2025-12-24 18:55:53.784 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool-HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=53m30s714ms).
+2025-12-24 18:58:24.338 [http-nio-8080-exec-3] INFO  com.lchjy.controller.FoodController-查询美食列表: keyword=, page=1, limit=8
+2025-12-24 18:59:03.555 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource-HikariPool-1 - Shutdown initiated...
+2025-12-24 18:59:03.584 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource-HikariPool-1 - Shutdown completed.
+2025-12-24 21:52:56.174 [main] INFO  com.lchjy.NingboApplication-Starting NingboApplication using Java 21.0.2 with PID 11317 (/Users/lichenhao/Documents/Project/ningbo/target/classes started by lichenhao in /Users/lichenhao/Documents/Project/ningbo)
+2025-12-24 21:52:56.175 [main] INFO  com.lchjy.NingboApplication-No active profile set, falling back to 1 default profile: "default"
+2025-12-24 21:52:57.592 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer-Tomcat initialized with port 8080 (http)
+2025-12-24 21:52:57.602 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-24 21:52:57.604 [main] INFO  org.apache.catalina.core.StandardService-Starting service [Tomcat]
+2025-12-24 21:52:57.604 [main] INFO  org.apache.catalina.core.StandardEngine-Starting Servlet engine: [Apache Tomcat/10.1.24]
+2025-12-24 21:52:57.784 [main] INFO  org.apache.jasper.servlet.TldScanner-At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-12-24 21:52:57.789 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/]-Initializing Spring embedded WebApplicationContext
+2025-12-24 21:52:57.790 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext-Root WebApplicationContext: initialization completed in 1576 ms
+2025-12-24 21:52:58.386 [main] INFO  o.s.b.a.web.servlet.WelcomePageHandlerMapping-Adding welcome page template: index
+2025-12-24 21:52:58.697 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-Starting ProtocolHandler ["http-nio-8080"]
+2025-12-24 21:52:58.719 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer-Tomcat started on port 8080 (http) with context path '/'
+2025-12-24 21:52:58.727 [main] INFO  com.lchjy.NingboApplication-Started NingboApplication in 2.938 seconds (process running for 4.345)
+2025-12-24 21:54:26.144 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/]-Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-24 21:54:26.146 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-Initializing Servlet 'dispatcherServlet'
+2025-12-24 21:54:26.158 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-Completed initialization in 11 ms
+2025-12-24 21:54:27.398 [http-nio-8080-exec-2] INFO  com.lchjy.controller.FoodController-查询美食列表: keyword=, page=1, limit=8
+2025-12-24 21:54:27.857 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource-HikariPool-1 - Starting...
+2025-12-24 21:54:28.567 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool-HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@12248b8
+2025-12-24 21:54:28.570 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource-HikariPool-1 - Start completed.
